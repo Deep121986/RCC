@@ -57,6 +57,30 @@
             }
     };
     </script>
+	<script type="text/javascript">
+function soap() {
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.open('POST', 'https://ac684ap.adobesandbox.com/nl/jsp/soaprouter.jsp', true);
+
+
+
+// build SOAP request
+var sr ="<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:urn=\"urn:xtk:workflow\">\r\n <soapenv:Header/>\r\n <soapenv:Body>\r\n <urn:PostEvent>\r\n <urn:sessiontoken>Nidhin/Nidhin</urn:sessiontoken>\r\n <urn:strWorkflowId>WKF88_Test_Nidh</urn:strWorkflowId>\r\n <urn:strActivity>signal</urn:strActivity>\r\n <urn:strTransition></urn:strTransition>\r\n <urn:elemParameters><variables email=\"nidhinprathap@gmail.com\"/>\r\n</urn:elemParameters>\r\n <urn:bComplete></urn:bComplete>\r\n </urn:PostEvent>\r\n </soapenv:Body>\r\n</soapenv:Envelope>";
+xmlhttp.onreadystatechange = function () {
+if (xmlhttp.readyState == 4) {
+if (xmlhttp.status == 200) {
+alert(xmlhttp.responseText);
+// alert('done. use firebug/console to see network response');
+}
+}
+}
+// Send the POST request
+xmlhttp.setRequestHeader('Content-Type', 'application/xml', 'SOAPAction', 'xtk:workflow#PostEvent','Access-Control-Allow-Origin', '*','Access-Control-Allow-Methods','GET, POST, PATCH, PUT, DELETE, OPTIONS','Access-Control-Allow-Headers', 'Origin, Content-Type, X-Auth-Token' );
+xmlhttp.send(sr);
+// send request
+// ...
+}
+</script>
     <!--/Data Layer-->
     <!--jQuery or other helper libraries-->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -144,6 +168,11 @@
 				  <div class="col-xs-12 col-sm-6 col-md-6 header-text">
                     <h2 class="wow bounceIn animated" data-wow-delay=".40s"><span>TEMPLATE</span> FOR <br/>YOUR WEBSITE</h2>
                     <h3 class="wow bounceIn animated" data-wow-delay=".50s">FOR YOUR WEBSITE </h3>
+					  <form name="Demo" action="" method="post">
+<div>
+<input type="button" value="Soap" onclick="soap();" />
+</div>
+</form>
                     <p class="wow bounceIn animated" data-wow-delay=".60s">Welcome</p>
                     <p>
                         <div class="btn btn-primary btn-lg btn-ornge wow bounceIn animated" data-wow-delay="1s"><i class="hbtn"></i> <span>Click Here</span></i>
